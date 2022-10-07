@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class BuisnessFactory extends Factory
+class ClientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,6 @@ class BuisnessFactory extends Factory
     {
         return [
             //
-            'buisnessName' => fake()->name(),
-            'buisnessCreationDate' => fake()->date(),
-            'buisnessDescription' => fake()->text(),
         ];
     }
 }

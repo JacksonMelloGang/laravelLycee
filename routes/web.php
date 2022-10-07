@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CreateClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', [CreateClientController::class, 'show']);
+
+
+Route::post('/test', [CreateClientController::class, 'show']);
