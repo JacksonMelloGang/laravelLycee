@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CreateClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [CreateClientController::class, 'show']);
+Route::get('/create', [CreateClientController::class, 'show'])->middleware('auth')->name('createclient');
+
+Route::get('/list', [ShowClientController::class, 'show'])->name('listclients');
+
+Route::get('/list/{id}', [ShowClientController::class, 'show'])->name('listspclient');
+
+Route::get('/edit/{id}', [EditClientController::class, 'show'])->name('editclient');
 
 
-Route::post('/test', [CreateClientController::class, 'show']);
+// form request
+Route::post('/create', [CreateClientController::class, 'create']);
+
+Route::delete('/delete', [DeleteClientController::class, 'show']);
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
