@@ -11,7 +11,7 @@ class FactureController extends Controller
     function show(){
         // Récupère toutes les factures
         $factures = Facture::all();
-        //dd($factures);
+
         return view('factures', [
             'title' => 'Listes des Factures',
             'factures' => $factures]);

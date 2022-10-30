@@ -1,4 +1,4 @@
-@props('facture')
+@props(['facture'])
 
 <div class="container bg-gray-50 border border-gray-200 rounded p-6 my-3">
     <ul class="list-group-item flex my-2">

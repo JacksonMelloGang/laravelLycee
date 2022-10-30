@@ -44,7 +44,7 @@ Route::get('/client/{id}/edit', [EditClientController::class, 'showid'])->whereN
 //Produit
 Route::get('/produits', [ProduitController::class, 'show'])->name('produits');
 
-Route::get('/produit/{id}', [ProduitController::class, 'showlist'])->name('produit');
+Route::get('/produit/{id}', [ProduitController::class, 'showid'])->name('produit');
 
 Route::get('/produit/create', [ProduitController::class, 'showcreate'])->name('createproduit');
 
