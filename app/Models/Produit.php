@@ -5,26 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Produit extends Model
 {
     use HasFactory;
 
-    protected $table = 'clients';
+    protected $table = 'produits';
 
     protected $fillable = [
-        'clientNom',
-        'clientPrenom',
-        'clientAdresse',
-        'clientVille',
-        'clientCodePostal',
-        'clientTelephone',
-        'clientEmail',
-        'clientDateNaissance',
+        'produitNom',
+        'produitDescription',
+        'produitPrix',
+        'created_at',
+        'updated_at',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
-     *
      * @var array<int, string>
      */
     protected $hidden = [
@@ -33,10 +29,8 @@ class Client extends Model
 
     /**
      * The attributes that should be cast.
-     *
      * @var array<string, string>
      */
     protected $casts = [
-        'clientDateNaissance' => 'date',
     ];
 }

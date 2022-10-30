@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('facture', function (Blueprint $table) {
+        Schema::create('factures', function (Blueprint $table) {
             $table->id();
             $table->string('factureNom');
             $table->unsignedBigInteger('factureClient');
             $table->unsignedBigInteger('factureProduit');
-            $table->float('PrixTotal');
+            $table->integer('Qte');
             $table->timestamps();
 
-            $table->foreign('factureClient')->references('id')->on('client');
-            $table->foreign('factureProduit')->references('id')->on('produit');
+            $table->foreign('factureClient')->references('id')->on('clients');
+            $table->foreign('factureProduit')->references('id')->on('produits');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facture');
+        Schema::dropIfExists('factures');
     }
 };

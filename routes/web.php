@@ -2,6 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CreateClientController;
+use App\Http\Controllers\EditClientController;
+
+use App\Http\Controllers\ProduitController;
+//use App\Http\Controllers\CreateProduitController;
+//use App\Http\Controllers\EditProduitController;
+
+use App\Http\Controllers\FactureController;
+//use App\Http\Controllers\CreateFactureController;
+//use App\Http\Controllers\EditFactureController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,27 +26,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+   return redirect('/produits');
 });
 
-Route::get('/create', [CreateClientController::class, 'show'])->middleware('auth')->name('createclient');
 
-Route::get('/list', [ShowClientController::class, 'show'])->name('listclients');
+//Client
+Route::get('/client/create', [CreateClientController::class, 'show'])->middleware('auth')->name('createclient');
 
-Route::get('/list/{id}', [ShowClientController::class, 'show'])->name('listspclient');
+Route::get('/clients', [ClientController::class, 'show'])->name('clients');
 
-Route::get('/edit/{id}', [EditClientController::class, 'show'])->name('editclient');
+Route::get('/client/{id}', [ClientController::class, 'showid'])->whereNumber('id')->name('client');
+
+Route::get('/client/{id}/edit', [EditClientController::class, 'showid'])->whereNumber('id')->name('editclient');
+
+
+//Produit
+Route::get('/produits', [ProduitController::class, 'show'])->name('produits');
+
+Route::get('/produit/{id}', [ProduitController::class, 'showlist'])->name('produit');
+
+Route::get('/produit/create', [ProduitController::class, 'showcreate'])->name('createproduit');
+
+Route::get('/produit/edit/{id}', [ProduitController::class, 'showedit'])->name('editproduit');
+
+
+//Facture
+Route::get('/factures', [FactureController::class, 'show'])->name('factures');
+
+Route::get('/facture/{id}', [FactureController::class, 'showid'])->name('facture');
+
+Route::get('/facture/create', [CreateFactureController::class, 'showcreate'])->name('createfacture');
 
 
 // form request
-Route::post('/create', [CreateClientController::class, 'create']);
+Route::post('/client/create', [CreateClientController::class, 'create']);
 
-Route::delete('/delete', [DeleteClientController::class, 'show']);
+Route::delete('/client/delete', [DeleteClientController::class, 'show']);
+
+Route::put('/client/edit', [EditClientController::class, 'show']);
+
+Route::post('/produit/create', [ProduitController::class, 'create']);
+
+Route::put('/produit/edit', [ProduitController::class, 'edit']);
+
+Route::delete('/produit/delete', [ProduitController::class, 'delete']);
+
+Route::post('/facture/create', [CreateFactureController::class, 'create']);
+
+Route::delete('/facture/delete', [DeleteFactureController::class, 'show']);
+
+Route::put('/facture/edit', [EditFactureController::class, 'show']);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-require __DIR__.'/auth.php';
